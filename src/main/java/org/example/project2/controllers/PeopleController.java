@@ -2,7 +2,6 @@ package org.example.project2.controllers;
 
 import jakarta.validation.Valid;
 import org.example.project2.dao.PersonDAO;
-import org.example.project2.models.Book;
 import org.example.project2.models.Person;
 import org.example.project2.util.PersonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
-
     private PersonDAO personDAO;
     private PersonValidator personValidator;
 
@@ -37,8 +33,6 @@ public class PeopleController {
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("books",personDAO.getBooksByPersonId(id));
         model.addAttribute("person",personDAO.show(id));
-
-
         return "people/show";
     }
 
@@ -81,6 +75,4 @@ public String edit(Model model, @PathVariable("id") int id){
         personDAO.delete(id);
         return "redirect:/people";
     }
-
-
 }

@@ -22,10 +22,8 @@ private final PersonDAO personDAO;
     @Override
     public void validate(Object target, Errors errors) {
         Person person = (Person) target;
-
         if(personDAO.show(person.getName()).isPresent()){
             errors.rejectValue("name","","This name already taken!");
         }
-
     }
 }
